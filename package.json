@@ -1,0 +1,42 @@
+{
+  "name": "prerender-s3-cache",
+  "version": "0.1.0",
+  "description": "Plugin to cache Prerender results in S3",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint index.js s3Cache.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tprobinson/prerender-s3-cache.git"
+  },
+  "keywords": [
+    "prerender",
+    "s3",
+    "cache",
+    "plugin",
+    "expires"
+  ],
+  "author": {
+    "name": "Trevor Robinson",
+    "url": "https://keybase.io/tpr"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tprobinson/prerender-s3-cache.git/issues"
+  },
+  "homepage": "https://github.com/tprobinson/prerender-s3-cache#readme",
+  "dependencies": {
+    "aws-sdk": "^2.22.0",
+    "cache-manager": "^2.4.0",
+    "moment": "^2.22.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0"
+  }
+}
