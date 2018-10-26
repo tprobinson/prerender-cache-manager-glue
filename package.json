@@ -1,6 +1,6 @@
 {
   "name": "prerender-cache-manager-glue",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Wrapper to use cache-manager to cache Prerender results",
   "main": "index.js",
   "scripts": {

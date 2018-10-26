@@ -1,6 +1,10 @@
 class PrerenderCacheManager {
 	constructor(inputCache) {
 		this.cache = inputCache
+
+		// Track cache hits, so that we don't set on a hit.
+		// Prerender provides the saveToCache with a new res object, so we can't use props on that.
+		this.cacheHitsInFlight = {}
 	}
 
 	returnFromCacheIfAvailable(req, res, next) {
@@ -14,7 +18,8 @@ class PrerenderCacheManager {
 			if( error ) {
 				console.error('Cache Error:', error.message, cacheKey)
 			} else if( result ) {
-				res.send(200, result.Body)
+				this.cacheHitsInFlight[cacheKey] = true
+				res.send(200, result)
 				return
 			}
 			next()
@@ -29,6 +34,12 @@ class PrerenderCacheManager {
 			content = req.prerender.documentHTML
 		} else {
 			content = req.prerender.content
+		}
+
+		if( cacheKey in this.cacheHitsInFlight && this.cacheHitsInFlight[cacheKey] ) {
+			delete this.cacheHitsInFlight[cacheKey]
+			next()
+			return
 		}
 
 		this.cache.set(cacheKey, content, (error, result) => {
